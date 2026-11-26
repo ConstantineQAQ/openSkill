@@ -1,6 +1,6 @@
 # Publication checklist
 
-Status as of 2026-11-26: the owner has confirmed publication rights, selected the MIT license and authorized making `ConstantineQAQ/openSkill` public. The MIT license is included; the visibility change is in progress. GitHub Actions has passed the build and all three smoke suites. No tagged release has been created.
+Status as of 2026-11-26: the owner has confirmed publication rights, selected the MIT license and authorized making `ConstantineQAQ/openSkill` public. The repository is public, unauthenticated repository and license access have been verified, and GitHub recognizes the MIT license. Private vulnerability reporting is enabled. GitHub Actions has passed the build and all three smoke suites, including the MIT publication commit. No tagged release has been created.
 
 ## Owner decisions and repository setup
 
@@ -10,7 +10,7 @@ Status as of 2026-11-26: the owner has confirmed publication rights, selected th
 - [x] Use the account-specific GitHub noreply identity for local project commits; leave global Git identity unchanged.
 - [x] Add the owner-selected [MIT license](../LICENSE), copyright 2026 Yaning Wang. Dependencies and third-party components retain their own licenses and notices.
 - [x] The owner authorized public repository visibility after selecting MIT.
-- [ ] Change visibility to public and verify unauthenticated access and GitHub license recognition.
+- [x] Change visibility to public and verify unauthenticated access and GitHub license recognition (`MIT`).
 
 ## Technical release checks
 
@@ -20,7 +20,7 @@ Status as of 2026-11-26: the owner has confirmed publication rights, selected th
 - [x] Synchronize the initial source to GitHub and verify that its file tree matches the local commit.
 - [x] Verify the Maven wrapper and dependencies on a GitHub-hosted Ubuntu runner. The first run built successfully without a pre-existing project cache; the full build and all smoke suites passed in run `45776845683` after fixing a demo-readiness race.
 - [ ] Verify real CLI/provider compatibility separately if advertising model-backed execution.
-- [ ] Configure a private security-reporting channel before public launch.
+- [x] Enable GitHub private vulnerability reporting; use [Security → Report a vulnerability](https://github.com/ConstantineQAQ/openSkill/security/advisories/new).
 
 ## Synchronization
 

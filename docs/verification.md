@@ -17,18 +17,24 @@ Date: 2026-11-26 (Asia/Shanghai).
 ## Passed on GitHub Actions
 
 - Repository: `ConstantineQAQ/openSkill`; branch: `main` (private at the time of the initial verification).
-- Verified code commit: `4c10adb09a188790a1ed71f853af7ec8a9b57731`.
-- Successful workflow: `Build and smoke tests`, run `45776845683`.
+- Verified MIT publication commit: `442b4d60085d74583f466dbdb419b67d3eb641fc`.
+- Successful workflow: `Build and smoke tests`, run [`45777795008`](https://github.com/ConstantineQAQ/openSkill/actions/runs/45777795008).
 - GitHub-hosted Ubuntu, Temurin JDK 21 and Python 3.12: Maven build/tests and all three smoke suites passed.
 - The initial run `45776533337` successfully resolved dependencies and built from a runner without a pre-existing project cache, but its workflow smoke read the demo catalog before initialization finished.
 - The smoke now waits for the seeded workflow within its existing bounded readiness loop. Local delayed-readiness/timeout checks and all three smoke suites passed again before the successful CI run.
 - The local source commit and the remote `main` tree were compared after upload and matched.
+
+## Public publication checks
+
+- GitHub reports `private: false`, visibility `public`, and SPDX license `MIT`.
+- The repository page is accessible without authentication; the unauthenticated raw `LICENSE` matches the local file byte for byte.
+- GitHub private vulnerability reporting is enabled. The reporting entry is documented in [SECURITY.md](../SECURITY.md).
+- No tagged release has been created.
 
 ## Not verified / not completed
 
 - Live model/provider compatibility: agent regression uses a fake CLI and makes no real model calls.
 - MySQL, production identity/credential integration, isolated runners, load tests or multi-tenant deployment.
 - A visual workbench; none is included.
-- Public visibility and private security-reporting activation are in progress; see the publication checklist.
 
 Publication rights, the MIT license and public visibility were confirmed by the owner on 2026-11-26. The repository `ConstantineQAQ/openSkill` exists. Project commits use the account-specific GitHub noreply identity rather than the machine-wide corporate identity; global Git configuration is not changed.

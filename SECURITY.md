@@ -4,7 +4,7 @@ openSkill is a developer preview, not a hardened hosted service. Only run truste
 
 ## Reporting
 
-Do not include credentials, customer data, private endpoints, exploitable payloads or unredacted logs in public issues. Once private vulnerability reporting is enabled for the GitHub repository, use its **Security → Report a vulnerability** entry. A private reporting channel must be configured before public launch. Until then, no public security-reporting address is advertised by this project.
+Do not include credentials, customer data, private endpoints, exploitable payloads or unredacted logs in public issues. Private vulnerability reporting is enabled. Use [Security → Report a vulnerability](https://github.com/ConstantineQAQ/openSkill/security/advisories/new) to contact the maintainer privately; do not report vulnerabilities in public issues.
 
 ## Secret handling
 
