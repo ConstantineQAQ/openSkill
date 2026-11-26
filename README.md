@@ -6,7 +6,7 @@ openSkill is a local-first, API-first Java backend for turning reusable skills i
 
 [简体中文](README.zh-CN.md) · [API reference](docs/api.md) · [Deployment](docs/deployment.md) · [Roadmap](docs/roadmap.md)
 
-> **Early-stage developer preview.** A working local prototype, not a production-ready multi-tenant service. There is no bundled visual editor. Publication rights are confirmed; the repository remains private and the open-source license is undecided; see [publication checklist](docs/publishing.md).
+> **Early-stage developer preview.** A working local prototype, not a production-ready multi-tenant service. There is no bundled visual editor. Licensed under [MIT](LICENSE); see [publication checklist](docs/publishing.md).
 
 ## Why openSkill?
 
@@ -116,4 +116,4 @@ Stack: Java 21, Spring Boot 4.1.3, Spring MVC/JDBC, Jackson 3, H2 locally, and a
 
 Start with [CONTRIBUTING.md](CONTRIBUTING.md) and [the roadmap](docs/roadmap.md). Do not submit secrets or internal service data. For security-sensitive reports, follow [SECURITY.md](SECURITY.md).
 
-**License status:** no open-source license has been granted yet. The owner has confirmed publication rights. A license decision and public-launch confirmation are still required before public distribution. Dependencies retain their respective licenses. The project must not be advertised as licensed open source until that decision is recorded.
+**License:** [MIT](LICENSE). Copyright (c) 2026 Yaning Wang. Dependencies and third-party components retain their respective licenses and notices.

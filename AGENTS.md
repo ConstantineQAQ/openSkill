@@ -10,8 +10,8 @@ This is the primary independently maintained project. Keep changes in this repos
 - Do not add unnecessary fallbacks or unrelated validation.
 - Prefer GET for reads and POST for new writes, while preserving documented compatibility.
 - Do not claim a working UI, public repository, license, production readiness or real-provider verification without evidence.
-- The owner confirmed publication rights on 2026-11-26. Private synchronization to `ConstantineQAQ/openSkill` is authorized.
-- Keep the repository private and do not add an open-source license or announce a public release until the owner confirms the license and public launch.
+- The owner confirmed publication rights, the MIT license and public visibility for `ConstantineQAQ/openSkill` on 2026-11-26.
+- Preserve the MIT license and third-party notices. Public repository access does not imply a tagged release, production readiness or verified real-provider compatibility.
 
 ## Verification
 

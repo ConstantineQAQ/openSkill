@@ -1,6 +1,6 @@
 # Contributing to openSkill
 
-openSkill is an early-stage, API-first project. Read the README and roadmap before making changes. The owner has confirmed publication rights; the repository remains private and a license decision is required before inviting public contributions; this document does not itself grant a license.
+openSkill is an early-stage, API-first project. Read the README and roadmap before making changes. The project is licensed under [MIT](LICENSE). The owner has approved public publication; contributions should preserve third-party licenses and notices.
 
 ## Development
 

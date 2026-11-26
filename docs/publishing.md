@@ -1,6 +1,6 @@
 # Publication checklist
 
-Status as of 2026-11-26: the owner has confirmed publication rights. Source is synchronized to the private repository `ConstantineQAQ/openSkill`, and GitHub Actions has passed the build and all three smoke suites. No public release or open-source license has been granted.
+Status as of 2026-11-26: the owner has confirmed publication rights, selected the MIT license and authorized making `ConstantineQAQ/openSkill` public. The MIT license is included; the visibility change is in progress. GitHub Actions has passed the build and all three smoke suites. No tagged release has been created.
 
 ## Owner decisions and repository setup
 
@@ -8,8 +8,9 @@ Status as of 2026-11-26: the owner has confirmed publication rights. Source is s
 - [x] Create `ConstantineQAQ/openSkill` through the authenticated GitHub MCP and verify private visibility.
 - [x] Connect this independent local project to the new repository without importing the source project's history.
 - [x] Use the account-specific GitHub noreply identity for local project commits; leave global Git identity unchanged.
-- [ ] Select and add an open-source license with the appropriate copyright holder and dependency notices. No license is assumed by this repository.
-- [ ] Confirm public launch and change repository visibility only after the license is settled.
+- [x] Add the owner-selected [MIT license](../LICENSE), copyright 2026 Yaning Wang. Dependencies and third-party components retain their own licenses and notices.
+- [x] The owner authorized public repository visibility after selecting MIT.
+- [ ] Change visibility to public and verify unauthenticated access and GitHub license recognition.
 
 ## Technical release checks
 
@@ -35,4 +36,4 @@ Description: `Local-first skill packaging, workflow composition, and traceable e
 
 Suggested topics: `agent-skills`, `workflow`, `java`, `spring-boot`, `automation`, `local-first`.
 
-Position the first release as a developer preview. Do not claim production adoption, a bundled visual editor, full sandbox isolation, or verified compatibility with untested providers. Private source synchronization is not a public release or a license grant.
+Position the first release as a developer preview. Do not claim production adoption, a bundled visual editor, full sandbox isolation, or verified compatibility with untested providers. Public source availability is not a tagged release or a production-readiness guarantee.

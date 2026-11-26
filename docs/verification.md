@@ -16,7 +16,7 @@ Date: 2026-11-26 (Asia/Shanghai).
 
 ## Passed on GitHub Actions
 
-- Repository: `ConstantineQAQ/openSkill` (private); branch: `main`.
+- Repository: `ConstantineQAQ/openSkill`; branch: `main` (private at the time of the initial verification).
 - Verified code commit: `4c10adb09a188790a1ed71f853af7ec8a9b57731`.
 - Successful workflow: `Build and smoke tests`, run `45776845683`.
 - GitHub-hosted Ubuntu, Temurin JDK 21 and Python 3.12: Maven build/tests and all three smoke suites passed.
@@ -29,6 +29,6 @@ Date: 2026-11-26 (Asia/Shanghai).
 - Live model/provider compatibility: agent regression uses a fake CLI and makes no real model calls.
 - MySQL, production identity/credential integration, isolated runners, load tests or multi-tenant deployment.
 - A visual workbench; none is included.
-- License selection, public launch and public security-reporting setup.
+- Public visibility and private security-reporting activation are in progress; see the publication checklist.
 
-Publication rights were confirmed by the owner on 2026-11-26. The private repository `ConstantineQAQ/openSkill` exists. Project commits use the account-specific GitHub noreply identity rather than the machine-wide corporate identity; global Git configuration is not changed.
+Publication rights, the MIT license and public visibility were confirmed by the owner on 2026-11-26. The repository `ConstantineQAQ/openSkill` exists. Project commits use the account-specific GitHub noreply identity rather than the machine-wide corporate identity; global Git configuration is not changed.
