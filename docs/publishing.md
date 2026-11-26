@@ -1,6 +1,6 @@
 # Publication checklist
 
-Status as of 2026-11-26: the owner has confirmed publication rights. The private repository `ConstantineQAQ/openSkill` exists, and the initial source synchronization is being prepared. No public release or open-source license has been granted.
+Status as of 2026-11-26: the owner has confirmed publication rights. Source is synchronized to the private repository `ConstantineQAQ/openSkill`, and GitHub Actions has passed the build and all three smoke suites. No public release or open-source license has been granted.
 
 ## Owner decisions and repository setup
 
@@ -16,10 +16,16 @@ Status as of 2026-11-26: the owner has confirmed publication rights. The private
 - [x] Review only intended source/configuration/documentation files; exclude runtime data, logs, IDE state, personal configuration and existing internal history.
 - [x] Scan the distributable tree for organization markers, common secret patterns, private dependency coordinates and personal paths. This is not an exhaustive secret audit.
 - [x] Run `./mvnw -o -B clean verify` and all three Python smoke scripts locally; see [verification scope](verification.md).
-- [ ] Synchronize the initial source to GitHub and verify that its file tree matches the local commit.
-- [ ] Verify the Maven wrapper and all dependencies on a clean GitHub runner without a private mirror/cache.
+- [x] Synchronize the initial source to GitHub and verify that its file tree matches the local commit.
+- [x] Verify the Maven wrapper and dependencies on a GitHub-hosted Ubuntu runner. The first run built successfully without a pre-existing project cache; the full build and all smoke suites passed in run `45776845683` after fixing a demo-readiness race.
 - [ ] Verify real CLI/provider compatibility separately if advertising model-backed execution.
 - [ ] Configure a private security-reporting channel before public launch.
+
+## Synchronization
+
+The repository was created and remote contents were verified through GitHub MCP. Its file-write operation returned HTTP 403 with the current token, so the initial source and subsequent updates were pushed through the existing authenticated Git transport. No token is stored in this repository.
+
+The local `codex/initial-import` branch tracks `origin/main`; repository-local `push.default=upstream` makes a plain `git push` update that upstream. Future development can use separate `codex/` branches and pull requests. This setup does not run unattended synchronization.
 
 ## Repository metadata
 
