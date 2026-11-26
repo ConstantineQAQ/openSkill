@@ -44,11 +44,14 @@ with tempfile.TemporaryDirectory(prefix='skill-java-smoke-') as temp:
                     raise RuntimeError((tmp / 'server.log').read_text())
                 try:
                     boot = request('/api/bootstrap')
-                    break
+                    # HTTP can respond before the demo ApplicationRunner has finished.
+                    if boot['workflows']:
+                        break
                 except (OSError, ValueError):
-                    time.sleep(.2)
+                    pass
+                time.sleep(.2)
             else:
-                raise TimeoutError('Server did not become ready')
+                raise TimeoutError('Server did not finish demo initialization')
             assert boot['runtime']['name'] == 'openSkill Java Runtime', boot['runtime']
             assert boot['runtime']['mode'] == 'database', boot['runtime']
             instruction = next(a for a in request('/api/adapters')['items'] if a['operation'] == 'instructions')
