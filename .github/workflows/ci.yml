@@ -1,0 +1,32 @@
+name: Build and smoke tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build and test
+        run: ./mvnw --batch-mode --no-transfer-progress clean verify
+      - name: Workflow and exported CLI smoke
+        run: python3 scripts/smoke.py
+      - name: Package persistence smoke
+        run: python3 scripts/smoke-package.py
+      - name: Instruction execution smoke (fake CLI)
+        run: python3 scripts/smoke-agent.py

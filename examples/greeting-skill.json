@@ -1,0 +1,9 @@
+{
+  "name": "greeting",
+  "title": "Greeting",
+  "description": "A deterministic greeting with no network or model dependency.",
+  "operation": "template",
+  "config": {"template": "Hello, {{name}}!"},
+  "inputs": [{"key": "name", "label": "Name", "type": "string", "required": true}],
+  "outputs": [{"key": "text", "label": "Greeting", "type": "string", "required": true}]
+}

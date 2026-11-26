@@ -1,0 +1,476 @@
+{
+  "skills": [
+    {
+      "id": "app-info",
+      "name": "application-info",
+      "title": "应用信息查询",
+      "description": "根据应用标识获取负责人、服务与环境。演示适配器，不连接企业系统。",
+      "kind": "atomic",
+      "operation": "demo-app",
+      "inputs": [
+        {
+          "key": "app",
+          "label": "应用标识",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "environment",
+          "label": "运行环境",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "key": "appId",
+          "label": "应用标识",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "owner",
+          "label": "负责人",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "services",
+          "label": "服务列表",
+          "type": "array",
+          "required": true
+        }
+      ],
+      "config": {},
+      "version": 1,
+      "createdAt": "2026-11-25T14:00:49.826Z",
+      "demo": true,
+      "category": "数据查询"
+    },
+    {
+      "id": "alarm-query",
+      "name": "alarm-query",
+      "title": "告警事件查询",
+      "description": "查询应用在指定日期的告警，返回结构化事件列表。使用模拟数据。",
+      "kind": "atomic",
+      "operation": "demo-alarms",
+      "inputs": [
+        {
+          "key": "appId",
+          "label": "应用标识",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "date",
+          "label": "查询日期",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "key": "alarms",
+          "label": "告警列表",
+          "type": "array",
+          "required": true
+        },
+        {
+          "key": "date",
+          "label": "查询日期",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "config": {},
+      "version": 1,
+      "createdAt": "2026-11-25T14:00:49.830Z",
+      "demo": true,
+      "category": "数据查询"
+    },
+    {
+      "id": "log-query",
+      "name": "related-logs",
+      "title": "关联日志检索",
+      "description": "接收告警列表，返回对应的演示日志；支持映射前筛选。",
+      "kind": "atomic",
+      "operation": "demo-logs",
+      "inputs": [
+        {
+          "key": "alarms",
+          "label": "告警列表",
+          "type": "array",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "key": "logs",
+          "label": "日志列表",
+          "type": "array",
+          "required": true
+        },
+        {
+          "key": "count",
+          "label": "日志条数",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "config": {},
+      "version": 1,
+      "createdAt": "2026-11-25T14:00:49.830Z",
+      "demo": true,
+      "category": "数据查询"
+    },
+    {
+      "id": "report",
+      "name": "inspection-report",
+      "title": "生成巡检报告",
+      "description": "将应用、告警与日志整理成 Markdown 报告。确定性模板，无需模型密钥。",
+      "kind": "atomic",
+      "operation": "template",
+      "inputs": [
+        {
+          "key": "app",
+          "label": "应用名称",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "date",
+          "label": "报告日期",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "logs",
+          "label": "日志内容",
+          "type": "array",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "key": "text",
+          "label": "报告正文",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "config": {
+        "template": "# {{app}} · 每日巡检报告\n\n查询日期：{{date}}\n\n> 当前报告使用模拟数据，不代表真实系统状态。\n\n## 关键事件与关联日志\n\n{{logs}}\n\n## 建议\n\n1. 核验慢接口及连接池指标。\n2. 对照真实日志后再决定处置动作。"
+      },
+      "version": 1,
+      "createdAt": "2026-11-25T14:00:49.830Z",
+      "category": "文本处理"
+    },
+    {
+      "id": "notify",
+      "name": "notification-preview",
+      "title": "消息发送预览",
+      "description": "仅展示目标和消息，不会发送。该节点禁止加入无人值守任务。",
+      "kind": "atomic",
+      "operation": "notification-preview",
+      "inputs": [
+        {
+          "key": "destination",
+          "label": "目标频道",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "message",
+          "label": "消息正文",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "key": "preview",
+          "label": "预览模式",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "key": "sent",
+          "label": "是否发送",
+          "type": "boolean",
+          "required": true
+        }
+      ],
+      "config": {},
+      "version": 1,
+      "createdAt": "2026-11-25T14:00:49.830Z",
+      "category": "外部操作",
+      "risk": "preview"
+    }
+  ],
+  "workflow": {
+    "id": "daily-inspection",
+    "name": "daily-inspection",
+    "title": "应用每日巡检",
+    "description": "串联应用、告警与日志，生成一份可复用的巡检报告。",
+    "inputs": [
+      {
+        "key": "app",
+        "label": "应用标识",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "environment",
+        "label": "运行环境",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "date",
+        "label": "查询日期",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "sampleInput": {
+      "app": "order-service",
+      "environment": "production",
+      "date": "2026-11-25"
+    },
+    "steps": [
+      {
+        "id": "s1",
+        "skill": {
+          "id": "app-info",
+          "name": "application-info",
+          "title": "应用信息查询",
+          "description": "根据应用标识获取负责人、服务与环境。演示适配器，不连接企业系统。",
+          "kind": "atomic",
+          "operation": "demo-app",
+          "inputs": [
+            {
+              "key": "app",
+              "label": "应用标识",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "environment",
+              "label": "运行环境",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "outputs": [
+            {
+              "key": "appId",
+              "label": "应用标识",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "owner",
+              "label": "负责人",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "services",
+              "label": "服务列表",
+              "type": "array",
+              "required": true
+            }
+          ],
+          "config": {},
+          "version": 1,
+          "createdAt": "2026-11-25T14:00:49.826Z",
+          "demo": true,
+          "category": "数据查询"
+        },
+        "bindings": {
+          "app": {
+            "mode": "path",
+            "path": "input.app",
+            "transform": "identity"
+          },
+          "environment": {
+            "mode": "path",
+            "path": "input.environment",
+            "transform": "identity"
+          }
+        },
+        "onEmpty": "stop"
+      },
+      {
+        "id": "s2",
+        "skill": {
+          "id": "alarm-query",
+          "name": "alarm-query",
+          "title": "告警事件查询",
+          "description": "查询应用在指定日期的告警，返回结构化事件列表。使用模拟数据。",
+          "kind": "atomic",
+          "operation": "demo-alarms",
+          "inputs": [
+            {
+              "key": "appId",
+              "label": "应用标识",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "date",
+              "label": "查询日期",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "outputs": [
+            {
+              "key": "alarms",
+              "label": "告警列表",
+              "type": "array",
+              "required": true
+            },
+            {
+              "key": "date",
+              "label": "查询日期",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "config": {},
+          "version": 1,
+          "createdAt": "2026-11-25T14:00:49.830Z",
+          "demo": true,
+          "category": "数据查询"
+        },
+        "bindings": {
+          "appId": {
+            "mode": "path",
+            "path": "steps.s1.appId",
+            "transform": "identity"
+          },
+          "date": {
+            "mode": "path",
+            "path": "input.date",
+            "transform": "identity"
+          }
+        },
+        "onEmpty": "stop"
+      },
+      {
+        "id": "s3",
+        "skill": {
+          "id": "log-query",
+          "name": "related-logs",
+          "title": "关联日志检索",
+          "description": "接收告警列表，返回对应的演示日志；支持映射前筛选。",
+          "kind": "atomic",
+          "operation": "demo-logs",
+          "inputs": [
+            {
+              "key": "alarms",
+              "label": "告警列表",
+              "type": "array",
+              "required": true
+            }
+          ],
+          "outputs": [
+            {
+              "key": "logs",
+              "label": "日志列表",
+              "type": "array",
+              "required": true
+            },
+            {
+              "key": "count",
+              "label": "日志条数",
+              "type": "number",
+              "required": true
+            }
+          ],
+          "config": {},
+          "version": 1,
+          "createdAt": "2026-11-25T14:00:49.830Z",
+          "demo": true,
+          "category": "数据查询"
+        },
+        "bindings": {
+          "alarms": {
+            "mode": "path",
+            "path": "steps.s2.alarms",
+            "transform": "identity",
+            "filter": {
+              "field": "severity",
+              "value": "critical"
+            }
+          }
+        },
+        "onEmpty": "stop"
+      },
+      {
+        "id": "s4",
+        "skill": {
+          "id": "report",
+          "name": "inspection-report",
+          "title": "生成巡检报告",
+          "description": "将应用、告警与日志整理成 Markdown 报告。确定性模板，无需模型密钥。",
+          "kind": "atomic",
+          "operation": "template",
+          "inputs": [
+            {
+              "key": "app",
+              "label": "应用名称",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "date",
+              "label": "报告日期",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "logs",
+              "label": "日志内容",
+              "type": "array",
+              "required": true
+            }
+          ],
+          "outputs": [
+            {
+              "key": "text",
+              "label": "报告正文",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "config": {
+            "template": "# {{app}} · 每日巡检报告\n\n查询日期：{{date}}\n\n> 当前报告使用模拟数据，不代表真实系统状态。\n\n## 关键事件与关联日志\n\n{{logs}}\n\n## 建议\n\n1. 核验慢接口及连接池指标。\n2. 对照真实日志后再决定处置动作。"
+          },
+          "version": 1,
+          "createdAt": "2026-11-25T14:00:49.830Z",
+          "category": "文本处理"
+        },
+        "bindings": {
+          "app": {
+            "mode": "path",
+            "path": "input.app",
+            "transform": "identity"
+          },
+          "date": {
+            "mode": "path",
+            "path": "input.date",
+            "transform": "identity"
+          },
+          "logs": {
+            "mode": "path",
+            "path": "steps.s3.logs",
+            "transform": "identity"
+          }
+        },
+        "onEmpty": "stop"
+      }
+    ]
+  }
+}

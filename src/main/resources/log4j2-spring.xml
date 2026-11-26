@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="logDir">${env:SKILL_LOG_DIR:-logs}</Property>
+        <Property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t] [traceId=%X{traceId}] %c{1} - %enc{%m}{CRLF}%n%ex</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern}" charset="UTF-8"/>
+        </Console>
+        <RollingFile name="File" fileName="${logDir}/openskill.log"
+                     filePattern="${logDir}/openskill-%i.log.gz">
+            <PatternLayout pattern="${pattern}" charset="UTF-8"/>
+            <Policies><SizeBasedTriggeringPolicy size="20 MB"/></Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>
